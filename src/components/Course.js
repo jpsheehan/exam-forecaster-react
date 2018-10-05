@@ -55,6 +55,13 @@ class Course extends Component {
   }
 
   handleChange = (e, categoryIndex, entryIndex) => {
+    if (e.target.value > e.target.max) {
+      e.target.value = e.target.max;
+    }
+    if (e.target.value < e.target.min) {
+      e.target.value = e.target.min;
+    }
+    
     const courseCopy = {...this.state.course};
     courseCopy.categories[categoryIndex].entries[entryIndex].electedMark = e.target.value;
     this.setState({
