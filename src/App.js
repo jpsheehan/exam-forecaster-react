@@ -16,6 +16,16 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/:course_code" component={Course} />
           </Switch>
+          <footer class="page-footer">
+            <div className="container">
+              <p>Disclaimer: I make no guarantees or claims that the information represented by this application is accurate.</p>
+            </div>
+            <div className="footer-copyright">
+              <div className="container">
+                Copyright &copy; 2018 JP Sheehan
+              </div>
+            </div>
+          </footer>
         </div>
       </BrowserRouter>
     );
