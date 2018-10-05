@@ -1,5 +1,6 @@
 import React from "react";
 import "./CourseView.css";
+import ExamForecast from "./ExamForecast";
 
 const CourseView = (props) => {
   const categories = props.categories.map((category, categoryIndex) => {
@@ -38,6 +39,7 @@ const CourseView = (props) => {
       <h3>{props.title}</h3>
       <h4><i>{props.code}</i></h4>
       {categories}
+      <ExamForecast course={props} />
     </div>
   );
 };
