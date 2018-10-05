@@ -10,7 +10,7 @@ class Course extends Component {
 
   render() {
     const course = this.state.course ? (
-      <CourseView {...this.state.course} />
+      <CourseView handleChange={this.handleChange} {...this.state.course} />
     ) : this.state.error ? (
       <div>An error occurred</div>
     ) : (
@@ -27,6 +27,11 @@ class Course extends Component {
     axios.get("https://sheehan.nz/live/exam-forecaster/dist/courses/" + this.props.match.params.course_code.toLowerCase() + ".json")
       .then((res) => {
         if (res.status === 200) {
+          res.data.categories.forEach((category) => {
+            category.entries.forEach((entry) => {
+              entry.electedMark = 0;
+            });
+          });
           this.setState({
             error:false,
             course: res.data
@@ -38,6 +43,15 @@ class Course extends Component {
           });
         }
       });
+  }
+
+  handleChange = (e, categoryIndex, entryIndex) => {
+    const courseCopy = {...this.state.course};
+    courseCopy.categories[categoryIndex].entries[entryIndex].electedMark = e.target.value;
+    this.setState({
+      error: false,
+      course: courseCopy
+    });
   }
 
 };

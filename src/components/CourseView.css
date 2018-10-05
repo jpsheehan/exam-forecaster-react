@@ -1,0 +1,7 @@
+.course-view .category thead {
+  font-weight: bold;
+}
+
+.course-view .category .category-name {
+  font-size: larger;
+}
