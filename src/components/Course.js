@@ -24,25 +24,34 @@ class Course extends Component {
   }
 
   componentDidMount() {
-    axios.get("https://sheehan.nz/live/exam-forecaster/dist/courses/" + this.props.match.params.course_code.toLowerCase() + ".json")
-      .then((res) => {
-        if (res.status === 200) {
-          res.data.categories.forEach((category) => {
-            category.entries.forEach((entry) => {
-              entry.electedMark = 0;
-            });
-          });
-          this.setState({
-            error:false,
-            course: res.data
-          });
-        } else {
-          this.setState({
-            ...this.state,
-            error: true
-          });
-        }
+    const storedData = localStorage.getItem(this.props.match.params.course_code);
+
+    if (storedData) {
+      this.setState({
+        error:false,
+        course: JSON.parse(storedData)
       });
+    } else {
+      axios.get("https://sheehan.nz/live/exam-forecaster/dist/courses/" + this.props.match.params.course_code.toLowerCase() + ".json")
+        .then((res) => {
+          if (res.status === 200) {
+            res.data.categories.forEach((category) => {
+              category.entries.forEach((entry) => {
+                entry.electedMark = 0;
+              });
+            });
+            this.setState({
+              error:false,
+              course: res.data
+            });
+          } else {
+            this.setState({
+              ...this.state,
+              error: true
+            });
+          }
+        });
+    }
   }
 
   handleChange = (e, categoryIndex, entryIndex) => {
@@ -52,6 +61,7 @@ class Course extends Component {
       error: false,
       course: courseCopy
     });
+    localStorage.setItem(this.state.course.code, JSON.stringify(this.state.course));
   }
 
 };
