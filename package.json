@@ -1,7 +1,12 @@
 {
   "name": "exam-forecaster-react",
   "version": "0.1.0",
-  "private": true,
+  "license": "GPL-3.0-only",
+  "private": false,
+  "repository": {
+    "type": "GitHub",
+    "url": "https://github.com/jpsheehan/exam-forecaster-react"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.5.2",
