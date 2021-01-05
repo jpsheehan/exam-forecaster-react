@@ -8,7 +8,7 @@
     "url": "https://github.com/jpsheehan/exam-forecaster-react"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
